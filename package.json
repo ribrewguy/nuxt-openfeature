@@ -1,0 +1,58 @@
+{
+  "name": "@nls/nuxt-openfeature",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/module.mjs",
+  "types": "./dist/module.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/module.d.ts",
+      "import": "./dist/module.mjs"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.mjs"
+    },
+    "./runtime/*": "./dist/runtime/*"
+  },
+  "scripts": {
+    "dev": "pnpm --dir playground dev",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "build": "unbuild",
+    "prepack": "pnpm build"
+  },
+  "peerDependencies": {
+    "nuxt": "^4.0.0",
+    "@tanstack/vue-query": "^5.0.0",
+    "@openfeature/server-sdk": "^1.20.1",
+    "@openfeature/flagsmith-provider": "^0.1.2",
+    "flagsmith-nodejs": "^6.2.0"
+  },
+  "devDependencies": {
+    "@nuxt/kit": "^4.3.0",
+    "@nuxt/test-utils": "^3.23.0",
+    "@typescript-eslint/parser": "^8.46.2",
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.6.0",
+    "h3": "^1.15.5",
+    "eslint": "^9.39.2",
+    "nuxt": "^4.3.0",
+    "typescript": "^5.9.3",
+    "unbuild": "^3.6.1",
+    "vitest": "^3.2.4",
+    "vue": "^3.5.22",
+    "vue-tsc": "^3.2.4"
+  },
+  "packageManager": "pnpm@10.26.1"
+}

@@ -1,0 +1,61 @@
+import { FlagsmithOpenFeatureProvider, type FlagsmithProviderConfig } from '@openfeature/flagsmith-provider'
+import type { Provider } from '@openfeature/server-sdk'
+import { Flagsmith, type FlagsmithConfig, type FlagsmithValue } from 'flagsmith-nodejs'
+
+const DEFAULT_FLAGSMITH_URL = 'https://edge.api.flagsmith.com/api/v1/'
+
+type FlagsmithProviderOptions = {
+  flagsmith?: FlagsmithConfig
+  provider?: FlagsmithProviderConfig
+}
+
+export const buildFlagsmithProvider = (options?: FlagsmithProviderOptions): Provider => {
+  const environmentKey
+    = options?.flagsmith?.environmentKey
+      ?? process.env.FLAGSMITH_ENVIRONMENT_KEY
+      ?? process.env.FLAGSMITH_KEY
+      ?? ''
+
+  if (!environmentKey) {
+    throw new Error('Flagsmith provider requires FLAGSMITH_ENVIRONMENT_KEY or flagsmith.environmentKey')
+  }
+
+  const apiUrl = options?.flagsmith?.apiUrl ?? process.env.FLAGSMITH_URL ?? DEFAULT_FLAGSMITH_URL
+
+  const flagsmith = new Flagsmith({
+    ...options?.flagsmith,
+    environmentKey,
+    apiUrl
+  })
+
+  return new FlagsmithOpenFeatureProvider(flagsmith, options?.provider)
+}
+
+export const fetchFlagsmithEnvironmentFlags = async (options?: FlagsmithProviderOptions) => {
+  const environmentKey
+    = options?.flagsmith?.environmentKey
+      ?? process.env.FLAGSMITH_ENVIRONMENT_KEY
+      ?? process.env.FLAGSMITH_KEY
+      ?? ''
+
+  if (!environmentKey) {
+    throw new Error('Flagsmith provider requires FLAGSMITH_ENVIRONMENT_KEY or flagsmith.environmentKey')
+  }
+
+  const apiUrl = options?.flagsmith?.apiUrl ?? process.env.FLAGSMITH_URL ?? DEFAULT_FLAGSMITH_URL
+
+  const flagsmith = new Flagsmith({
+    ...options?.flagsmith,
+    environmentKey,
+    apiUrl
+  })
+
+  const flags = await flagsmith.getEnvironmentFlags()
+  const entries = Object.entries(flags.flags)
+
+  return entries.map(([key, flag]) => ({
+    key,
+    enabled: flag.enabled,
+    value: flag.value as FlagsmithValue | null
+  }))
+}
