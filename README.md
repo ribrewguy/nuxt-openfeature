@@ -43,15 +43,25 @@ export default defineNuxtConfig({
 ## Commands
 
 ```bash
-pnpm install --ignore-workspace
+pnpm install
 pnpm prepare
 pnpm dev
+pnpm docs:dev
 pnpm lint
+pnpm docs:lint
 pnpm typecheck
+pnpm docs:typecheck
 pnpm test
 pnpm build
+pnpm docs:build
 pnpm pack
 ```
+
+## Documentation
+
+- Source: `docs/`
+- Local docs dev server: `pnpm docs:dev`
+- Production hosting target: Vercel (deployment wiring in follow-up bead)
 
 ## Git Hooks (Husky)
 
