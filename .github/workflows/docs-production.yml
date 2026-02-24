@@ -40,7 +40,14 @@ jobs:
       - name: Validate docs build
         run: pnpm docs:build
 
+      - name: Vercel production not configured
+        if: ${{ secrets.VERCEL_TOKEN == '' || secrets.VERCEL_ORG_ID == '' || secrets.VERCEL_DOCS_PROJECT_ID == '' }}
+        run: |
+          echo "::notice::Skipping Vercel production deploy because required secrets are missing."
+          echo "::notice::Set VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_DOCS_PROJECT_ID."
+
       - name: Pull Vercel project settings
+        if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_DOCS_PROJECT_ID != '' }}
         working-directory: docs
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -48,6 +55,7 @@ jobs:
         run: pnpm dlx vercel@latest pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Build Vercel deployment
+        if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_DOCS_PROJECT_ID != '' }}
         working-directory: docs
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -55,6 +63,7 @@ jobs:
         run: pnpm dlx vercel@latest build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy production to Vercel
+        if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_DOCS_PROJECT_ID != '' }}
         working-directory: docs
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
