@@ -29,6 +29,12 @@ gh auth login
 scripts/oss/setup-branch-protection.sh ribrewguy/nuxt-openfeature
 ```
 
+If the repo is newly created and has no remote branches yet, push `main` first:
+
+```bash
+git push -u origin main
+```
+
 The script enforces:
 
 - required checks:

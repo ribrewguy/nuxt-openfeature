@@ -16,6 +16,26 @@ if [[ -z "${REPO}" ]]; then
   REPO="$(gh repo view --json nameWithOwner --jq .nameWithOwner)"
 fi
 
+BRANCH="${2:-}"
+if [[ -z "${BRANCH}" ]]; then
+  BRANCH="$(gh api "repos/${REPO}" --jq '.default_branch')"
+fi
+
+if [[ -z "${BRANCH}" || "${BRANCH}" == "null" ]]; then
+  echo "Unable to determine target branch for protection."
+  echo "Pass it explicitly: scripts/oss/setup-branch-protection.sh <owner/repo> <branch>"
+  exit 1
+fi
+
+BRANCH_REF="${BRANCH//\//%2F}"
+
+if ! gh api "repos/${REPO}/branches/${BRANCH_REF}" >/dev/null 2>&1; then
+  echo "Remote branch '${BRANCH}' does not exist in ${REPO}."
+  echo "Push the branch first, then rerun this script."
+  echo "Example: git push origin ${BRANCH}"
+  exit 1
+fi
+
 PAYLOAD="$(cat <<'JSON'
 {
   "required_status_checks": {
@@ -47,7 +67,7 @@ JSON
 gh api \
   --method PUT \
   -H "Accept: application/vnd.github+json" \
-  "repos/${REPO}/branches/main/protection" \
+  "repos/${REPO}/branches/${BRANCH_REF}/protection" \
   --input - <<<"${PAYLOAD}" >/dev/null
 
-echo "Branch protection configured for ${REPO}:main"
+echo "Branch protection configured for ${REPO}:${BRANCH}"
