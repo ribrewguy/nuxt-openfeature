@@ -13,6 +13,6 @@ The format is based on Keep a Changelog and this project follows Semantic Versio
 ### Changed
 
 - Package scope changed to `@ribrewguy/nuxt-openfeature`.
-- Publish workflow switched to npmjs using `NPM_TOKEN`.
+- Publish workflow switched to npm trusted publishing with provenance.
 - Repository metadata and README updated for public OSS release.
 - Full-history secret scan command now scans full git history without depth limits.

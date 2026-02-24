@@ -45,7 +45,7 @@ export default defineNuxtConfig({
 | `envPrefix` | `string` | no | `'OPENFEATURE_FLAG_'` | `env` | Prefix used when reading flag values from environment variables. |
 | `flags` | `Record<string, OpenFeatureFlagDefinition>` | no | `{}` | `in-memory` | Static in-memory flag definitions. |
 | `options` | `Record<string, unknown>` | no | `{}` | `flagsmith` | Passed to `flagsmith-nodejs` config (`environmentKey`, `apiUrl`, and any additional SDK options). |
-| `providerOptions` | `Record<string, unknown>` | no | `{}` | `flagsmith` | Passed to `FlagsmithOpenFeatureProvider` options. |
+| `providerOptions` | `Record<string, unknown>` | no | `{}` | `flagsmith` | Passed to `FlagsmithOpenFeatureProvider` options (for example `useFlagsmithDefaults`). |
 
 ### `openFeature.providers[].flags.<flagKey>`
 
@@ -54,6 +54,21 @@ export default defineNuxtConfig({
 | `variants` | `Record<string, boolean \\| string \\| number>` | yes | - | Variant map for the flag. |
 | `defaultVariant` | `string` | yes | - | Must match a key in `variants`. |
 | `disabled` | `boolean` | no | `false` | If `true`, diagnostics report the flag as disabled. |
+
+### `openFeature.providers[].options` (Flagsmith)
+
+| Variable | Type | Required | Default | Notes |
+| --- | --- | --- | --- | --- |
+| `environmentKey` | `string` | no* | from `FLAGSMITH_ENVIRONMENT_KEY`, then `FLAGSMITH_KEY` | Required unless environment variables provide it. |
+| `apiUrl` | `string` | no | from `FLAGSMITH_URL` or `https://edge.api.flagsmith.com/api/v1/` | Flagsmith API base URL. |
+| `*` additional keys | `unknown` | no | - | Forwarded to `flagsmith-nodejs` constructor options. |
+
+### `openFeature.providers[].providerOptions` (Flagsmith OpenFeature Provider)
+
+| Variable | Type | Required | Default | Notes |
+| --- | --- | --- | --- | --- |
+| `useFlagsmithDefaults` | `boolean` | no | provider default | Passed through to `FlagsmithOpenFeatureProvider`. |
+| `*` additional keys | `unknown` | no | - | Forwarded to OpenFeature Flagsmith provider options. |
 
 ## Environment Variables
 
@@ -129,3 +144,11 @@ export default defineNuxtConfig({
 - Server-only config stays in `runtimeConfig.openFeature`.
 - Public client-safe config lives in `runtimeConfig.public.openFeature`.
 - Provider credentials must never be exposed in public runtime config.
+
+## Configuration Merge Semantics
+
+When multiple config sources are present:
+
+- `openFeature.providers` from module options are appended after existing runtime providers.
+- `openFeature.publicFlags` from module options override existing runtime `publicFlags`.
+- `openFeature.flagRouteBase` is normalized and mirrored into `runtimeConfig.public.openFeature.flagRouteBase`.

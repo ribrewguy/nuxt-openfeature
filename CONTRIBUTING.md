@@ -34,7 +34,7 @@ pnpm build
 - Use clear, scoped commits with rationale.
 - Include tests for behavior changes.
 - Keep server-only secrets out of public runtime config.
-- Document any externally visible behavior updates in `CHANGELOG.md`.
+- Add a changeset for externally visible behavior changes: `pnpm changeset`.
 
 ## Security
 

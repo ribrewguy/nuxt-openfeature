@@ -35,10 +35,12 @@ export default defineNuxtConfig({
 
 ## Release
 
-- Version with semver in `package.json`
-- Create tag `vX.Y.Z`
-- Push tag to trigger publish workflow
-- Publish workflow expects `NPM_TOKEN` in GitHub Actions secrets
+- Create a release changeset: `pnpm changeset`
+- Merge to `main` so `changesets.yml` opens/updates the release PR
+- Merge the release PR to bump versions and changelog
+- Create and push tag `vX.Y.Z` for the release commit
+- Ensure npm Trusted Publisher is configured for this repository/workflow
+- Publish workflow uses npm trusted publishing with provenance (`--provenance`)
 
 ## Commands
 
@@ -54,6 +56,8 @@ pnpm docs:typecheck
 pnpm test
 pnpm build
 pnpm docs:build
+pnpm changeset
+pnpm version-packages
 pnpm pack
 ```
 

@@ -10,6 +10,9 @@ title: Nuxt OpenFeature Docs
 
 - [Installation](/getting-started/installation)
 - [Configuration](/getting-started/configuration)
+- [Context and Targeting](/getting-started/context-and-targeting)
+- [Runtime Behavior](/getting-started/runtime-behavior)
+- [API Endpoints](/api/endpoints)
 - [Composables API](/api/composables)
 - [FeatureFlag Component](/api/component)
 - [Flagsmith Provider](/providers/flagsmith)
