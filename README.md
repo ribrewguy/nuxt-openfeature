@@ -65,7 +65,9 @@ pnpm pack
 
 - Source: `docs/`
 - Local docs dev server: `pnpm docs:dev`
-- Production hosting target: Vercel (deployment wiring in follow-up bead)
+- Preview deploy workflow: `.github/workflows/docs-preview.yml`
+- Production deploy workflow: `.github/workflows/docs-production.yml`
+- Required repo secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_DOCS_PROJECT_ID`
 
 ## Git Hooks (Husky)
 
