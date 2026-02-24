@@ -41,6 +41,7 @@ export default defineNuxtConfig({
 - Create and push tag `vX.Y.Z` for the release commit
 - Ensure npm Trusted Publisher is configured for this repository/workflow
 - Publish workflow uses npm trusted publishing with provenance (`--provenance`)
+- One-time maintainer setup details: `REPOSITORY_SETUP.md`
 
 ## Commands
 
