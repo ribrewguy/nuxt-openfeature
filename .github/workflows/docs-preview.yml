@@ -89,7 +89,7 @@ jobs:
 
       - name: Comment preview URL
         if: ${{ steps.deploy.outputs.url != '' }}
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: docs-preview
           message: |
