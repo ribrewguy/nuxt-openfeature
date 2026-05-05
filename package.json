@@ -92,7 +92,7 @@
     "h3": "^1.15.5",
     "husky": "^9.1.7",
     "nuxt": "^4.3.0",
-    "posthog-node": "^5.33.0",
+    "posthog-node": "^5.33.2",
     "typescript": "^5.9.3",
     "unbuild": "^3.6.1",
     "vitest": "^3.2.4",
