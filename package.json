@@ -91,7 +91,7 @@
     "gitleaks-secret-scanner": "^2.1.1",
     "h3": "^1.15.5",
     "husky": "^9.1.7",
-    "nuxt": "^4.3.0",
+    "nuxt": "^4.4.4",
     "posthog-node": "^5.33.0",
     "typescript": "^5.9.3",
     "unbuild": "^3.6.1",
