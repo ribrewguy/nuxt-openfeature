@@ -73,8 +73,8 @@ importers:
         specifier: ^4.4.6
         version: 4.4.6(@babel/plugin-syntax-jsx@7.28.6(@babel/core@7.29.0))(@babel/plugin-syntax-typescript@7.28.6(@babel/core@7.29.0))(@parcel/watcher@2.5.6)(@types/node@25.6.0)(@vercel/functions@3.5.0)(@vue/compiler-sfc@3.5.34)(better-sqlite3@12.6.2)(cac@6.7.14)(db0@0.3.4(better-sqlite3@12.6.2))(eslint@9.39.2(jiti@2.7.0))(ioredis@5.10.1)(lightningcss@1.31.1)(magicast@0.5.3)(optionator@0.9.4)(rollup-plugin-visualizer@7.0.1(rollup@4.57.1))(rollup@4.57.1)(srvx@0.11.15)(terser@5.47.1)(typescript@5.9.3)(vite@7.3.3(@types/node@25.6.0)(jiti@2.7.0)(lightningcss@1.31.1)(terser@5.47.1)(yaml@2.9.0))(vue-tsc@3.3.0(typescript@5.9.3))(yaml@2.9.0)
       posthog-node:
-        specifier: ^5.34.4
-        version: 5.34.4
+        specifier: ^5.34.5
+        version: 5.34.5
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -1560,11 +1560,11 @@ packages:
   '@poppinss/exception@1.2.3':
     resolution: {integrity: sha512-dCED+QRChTVatE9ibtoaxc+WkdzOSjYTKi/+uacHWIsfodVfpsueo3+DKpgU5Px8qXjgmXkSvhXvSCz3fnP9lw==}
 
-  '@posthog/core@1.29.4':
-    resolution: {integrity: sha512-LF629ep7lvIrdDE2UXvMIHh8Xo8k0VChTCdBSHmbHidhUkNVzFEieHPsfvD/0uiVy9fxM257G2Jzlay3quhUFQ==}
+  '@posthog/core@1.29.5':
+    resolution: {integrity: sha512-Jm5AE95EwBRqO6J8+skDufyf5rnEcmOvjYArCKCOzD4mWdH1xGpfcRXj5TEyZII3mD04Kr7pw9aP2ZbAHQGu2A==}
 
-  '@posthog/types@1.374.1':
-    resolution: {integrity: sha512-7kgKTN89qwR+DiFF7LhUWE9nC/c5Ktb3nZD3A0TqGviIw9jeQzLJflYayEy+QB4d3mu6TXzV//8oLv7K5JIWgQ==}
+  '@posthog/types@1.374.2':
+    resolution: {integrity: sha512-ZghQSFMi+HFJNPvPjBoyY/jWQ+q6mSQVtWQxOHMSbBidUZjsyYbxYxBFbHy2qWLNe4mEpX+Wqir2Q4I/4AVvJQ==}
 
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
@@ -4529,8 +4529,8 @@ packages:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
 
-  posthog-node@5.34.4:
-    resolution: {integrity: sha512-juTSlb1DTZBbBHSJpALIQmyGe0eNdYaWEkoOsYGUdbztXi60/xUMbSthxPnEzORRteoQc+RtFN1RW+r1sxMJOA==}
+  posthog-node@5.34.5:
+    resolution: {integrity: sha512-VHFS+LNQPDpd0/7mMM4jrrPboHQ9Znl75wkQbpM69KKvrUGIckRRJq6Uley8x+vubLozuIUgKAz9eMs1N8U5XQ==}
     engines: {node: ^20.20.0 || >=22.22.0}
     peerDependencies:
       rxjs: ^7.0.0
@@ -7011,11 +7011,11 @@ snapshots:
 
   '@poppinss/exception@1.2.3': {}
 
-  '@posthog/core@1.29.4':
+  '@posthog/core@1.29.5':
     dependencies:
-      '@posthog/types': 1.374.1
+      '@posthog/types': 1.374.2
 
-  '@posthog/types@1.374.1': {}
+  '@posthog/types@1.374.2': {}
 
   '@rolldown/pluginutils@1.0.1': {}
 
@@ -10256,9 +10256,9 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  posthog-node@5.34.4:
+  posthog-node@5.34.5:
     dependencies:
-      '@posthog/core': 1.29.4
+      '@posthog/core': 1.29.5
 
   powershell-utils@0.1.0: {}
 
